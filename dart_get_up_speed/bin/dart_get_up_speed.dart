@@ -1,5 +1,8 @@
 import 'package:meta/meta.dart';
 
+// package connection
+part 'package_test.dart';
+
 void main(List<String> arguments) {
   // nonassignable인 경우?
   // -> final, const
@@ -186,6 +189,31 @@ void main(List<String> arguments) {
   // factory class
   final metaCls = MetaClass.extended(true);
   print(metaCls);
+
+  // abstract class
+  // - instantiation 불가능
+  // AbstractClass('test','test');
+
+  // interface
+  OtherClass() as RegularClass; // abstract class 이지만 가능
+
+  // mixin
+  final bot = ChatbotChannel('123');
+  bot.sendElevatedMessage('hello');
+
+  final admin =
+      AdminChannel(specialAdminField: 1, firstName: 'test', lastName: 'test');
+  admin.sendElevatedMessage('admin');
+
+  // extension
+  final dup = 'hello'.duplicate();
+  print(dup);
+  final dup2 = 'hello'.duplicated;
+  print(dup2);
+
+  // package connection
+  // - part, part of로 연결하여 private class 사용할 수 있게 됨!
+  _PackagePrivateClass._('_privateField');
 }
 
 // function parameter
@@ -448,6 +476,7 @@ class MetaExtendedClass extends MetaClass {
 //  - 여태까지 class는 모두 instantiate 했지만, abstract class는 안함
 //  - extending 하기 위해 사용
 //  - instantiate 할 수 없다는 것 잘 기억
+//  - explicit type casting 불가능
 //  - interface 역할
 abstract class AbstractClass {
   final String _firstName;
@@ -469,6 +498,7 @@ abstract class AbstractClass {
 }
 
 // interface : dart에는 term이 없음 => 모든 class가 interface 역할을 할 수 있음
+// - 일반적으로는 아무것도 구현되어 있지 않은 abstract class 를 사용
 class RegularClass {
   final int myField;
 
@@ -480,12 +510,14 @@ class RegularClass {
 }
 
 class OtherClass implements RegularClass {
+  // implements 하면 항상 상속 전의 class의 맴버들을 override 해줘야함
   @override
   String getSomeString() {
     // TODO: implement getSomeString
     throw UnimplementedError();
   }
 
+  // field 도 상속 받아야함
   @override
   // TODO: implement myField
   int get myField => throw UnimplementedError();
@@ -494,3 +526,74 @@ class OtherClass implements RegularClass {
   // TODO: implement publicProperty
   int get publicProperty => throw UnimplementedError();
 }
+
+// interface 예시 + Generic
+abstract class DataReader<T> {
+  T readData();
+}
+
+class IntegerDataReader implements DataReader<int> {
+  @override
+  int readData() {
+    print('performing logic');
+    return 1234;
+  }
+}
+
+class StringDataReader implements DataReader<String> {
+  @override
+  String readData() {
+    print('performing logic');
+    return "1234";
+  }
+}
+
+// method도 가능
+void myMethod<T>(T arg) {}
+
+// mixin
+// - 같은 기능을 상속받지 않는 class에서 사용하고 싶을 때
+class UserChannel {
+  final String firstName;
+  final String lastName;
+
+  UserChannel(this.firstName, this.lastName);
+}
+
+// mixin!
+// - instantiation 불가능
+// - explicit type casting 불가능
+// - with를 이용하여 사용
+mixin ElevatedClient {
+  void sendElevatedMessage(String text) {
+    print('Sending a message with an elevated importance: $text');
+  }
+}
+
+class AdminChannel extends UserChannel with ElevatedClient {
+  final double specialAdminField;
+  AdminChannel(
+      {required this.specialAdminField,
+      required String firstName,
+      required String lastName})
+      : super(firstName, lastName);
+}
+
+class ChatbotChannel with ElevatedClient {
+  final String id;
+  ChatbotChannel(this.id);
+}
+
+// extension
+// - 직접 정의하지 않은 system class, library class에 API 추가하는 기능
+extension StringDuplication on String {
+  String duplicate() {
+    return this + this;
+  }
+
+  // property도 가능
+  String get duplicated => this + this;
+}
+
+// package field
+void _oppositeWay() {}
