@@ -1,5 +1,9 @@
 import 'package:meta/meta.dart';
 
+import 'async_future.dart';
+import 'error_handling.dart';
+import 'freezed_union.dart';
+
 // package connection
 part 'package_test.dart';
 
@@ -214,6 +218,20 @@ void main(List<String> arguments) {
   // package connection
   // - part, part of로 연결하여 private class 사용할 수 있게 됨!
   _PackagePrivateClass._('_privateField');
+
+  // freezed union
+  unionTest();
+
+  // error handling
+  errorHandling();
+
+  // async
+  // asyncTest();
+  // async2Test();
+
+  // steam
+  // stream1Test();
+  streamGeneratorTest();
 }
 
 // function parameter
