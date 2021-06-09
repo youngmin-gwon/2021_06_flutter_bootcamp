@@ -23,15 +23,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  # provider: ^5.0.0
+  flutter_riverpod:
+    git:
+      url: https://github.com/rrousselGit/river_pod.git
+      ref: rfc-335
+      path: packages/flutter_riverpod
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   lint: ^1.5.3
+
+# depedency override 하는 방법
+dependency_overrides:
+  riverpod:
+    git:
+      url: https://github.com/rrousselGit/river_pod.git
+      ref: rfc-335
+      path: packages/riverpod
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
