@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_foundation/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 typedef IntValueSetter = void Function(int value);
 
@@ -6,13 +8,13 @@ class RangeSelectorForm extends StatelessWidget {
   const RangeSelectorForm({
     Key? key,
     required this.formKey,
-    required this.minValueSetter,
-    required this.maxValueSetter,
+    // required this.minValueSetter,
+    // required this.maxValueSetter,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
-  final IntValueSetter minValueSetter;
-  final IntValueSetter maxValueSetter;
+  // final IntValueSetter minValueSetter;
+  // final IntValueSetter maxValueSetter;
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +27,18 @@ class RangeSelectorForm extends StatelessWidget {
           children: [
             RangeSelectorTextFormField(
               labelText: "Minimum",
-              intValueSetter: minValueSetter,
+              intValueSetter: (value) =>
+                  context.read(randomizerProvider).min = value,
+              // intValueSetter: minValueSetter,
             ),
             const SizedBox(
               height: 12,
             ),
             RangeSelectorTextFormField(
               labelText: "Maximum",
-              intValueSetter: maxValueSetter,
+              intValueSetter: (value) =>
+                  context.read(randomizerProvider).max = value,
+              // intValueSetter: maxValueSetter,
             ),
           ],
         ),
