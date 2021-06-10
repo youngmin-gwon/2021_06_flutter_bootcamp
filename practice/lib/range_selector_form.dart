@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:practice/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RangeSelectorForm extends StatelessWidget {
   const RangeSelectorForm({
     Key? key,
     required this.formKey,
-    required this.minValueSetter,
-    required this.maxValueSetter,
   }) : super(key: key);
+
   final GlobalKey<FormState> formKey;
-  final IntValueSetter minValueSetter;
-  final IntValueSetter maxValueSetter;
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: Column(
-        children: [
-          RangeSelectorTextFormField(
-            labelText: "Minimum",
-            intValueSetter: minValueSetter,
-          ),
-          SizedBox(height: 12),
-          RangeSelectorTextFormField(
-            labelText: "Maximum",
-            intValueSetter: maxValueSetter,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RangeSelectorTextFormField(
+              labelText: "Minimum",
+              intValueSetter: (value) =>
+                  context.read(randomizerProvider.notifier).setMin(value),
+            ),
+            const SizedBox(height: 12),
+            RangeSelectorTextFormField(
+              labelText: "Maximum",
+              intValueSetter: (value) =>
+                  context.read(randomizerProvider.notifier).setMax(value),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -38,6 +43,7 @@ class RangeSelectorTextFormField extends StatelessWidget {
     required this.labelText,
     required this.intValueSetter,
   }) : super(key: key);
+
   final String labelText;
   final IntValueSetter intValueSetter;
 
@@ -45,9 +51,8 @@ class RangeSelectorTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        labelText: labelText,
-        border: OutlineInputBorder(),
-      ),
+          labelText: labelText, border: const OutlineInputBorder()),
+      keyboardType: const TextInputType.numberWithOptions(signed: true),
       onSaved: (newValue) => intValueSetter(int.parse(newValue ?? "")),
       validator: (value) {
         if (value == null || int.tryParse(value) == null) {
