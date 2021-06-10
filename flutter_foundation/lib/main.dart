@@ -11,7 +11,8 @@ void main() {
 // global variable 처럼 보이나 클래스와 같은 레벨에 있기 때문에 global variable 이 아님 => mutable 하지 않고 immutable 하다는 의미
 // 한번 instantiated 되면 앱이 꺼질 때, 혹은 widget dispose 전까지 남아있음
 final randomizerProvider =
-    ChangeNotifierProvider((ref) => RandomizerChangeNotifier());
+    StateNotifierProvider<RandomizerStateNotifier, RandomizerState>(
+        (ref) => RandomizerStateNotifier());
 
 class AppWidget extends StatelessWidget {
   // This widget is the root of your application.

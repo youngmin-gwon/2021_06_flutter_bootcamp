@@ -24,18 +24,19 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  # provider: ^5.0.0
   flutter_riverpod:
     git:
       url: https://github.com/rrousselGit/river_pod.git
       ref: rfc-335
       path: packages/flutter_riverpod
-
+  freezed_annotation: ^0.14.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   lint: ^1.5.3
+  freezed: ^0.14.2
+  build_runner: ^2.0.4
 
 # depedency override 하는 방법
 dependency_overrides:
@@ -44,7 +45,6 @@ dependency_overrides:
       url: https://github.com/rrousselGit/river_pod.git
       ref: rfc-335
       path: packages/riverpod
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

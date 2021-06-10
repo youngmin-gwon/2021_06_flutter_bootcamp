@@ -40,7 +40,7 @@ class RandomizerPage extends ConsumerWidget {
             onPressed: () {
               // generatedNumber.value = min + randomGenerator.nextInt(max + 1 - min);
               // context.read<RandomizerChangeNotifier>().generateRandomNumber();
-              context.read(randomizerProvider).generateRandomNumber();
+              context.read(randomizerProvider.notifier).generateRandomNumber();
             },
             label: Text("Generate")),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
