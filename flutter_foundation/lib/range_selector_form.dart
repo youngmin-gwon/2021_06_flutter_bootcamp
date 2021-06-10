@@ -28,7 +28,7 @@ class RangeSelectorForm extends StatelessWidget {
             RangeSelectorTextFormField(
               labelText: "Minimum",
               intValueSetter: (value) =>
-                  context.read(randomizerProvider).min = value,
+                  context.read(randomizerProvider.notifier).setMax(value),
               // intValueSetter: minValueSetter,
             ),
             const SizedBox(
@@ -37,7 +37,7 @@ class RangeSelectorForm extends StatelessWidget {
             RangeSelectorTextFormField(
               labelText: "Maximum",
               intValueSetter: (value) =>
-                  context.read(randomizerProvider).max = value,
+                  context.read(randomizerProvider.notifier).setMax(value),
               // intValueSetter: maxValueSetter,
             ),
           ],
