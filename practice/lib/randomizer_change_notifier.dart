@@ -8,11 +8,11 @@ part 'randomizer_change_notifier.freezed.dart';
 
 @freezed
 class RandomizerState with _$RandomizerState {
-  const factory RandomizerState({
-    @Default(0) int min,
-    @Default(0) int max,
-    int? generatedNumber,
-  }) = _RandomizerState;
+  const factory RandomizerState(
+      {@Default(0) int min,
+      @Default(0) int max,
+      int? generatedNumber}) = _RandomizerState;
+
   const RandomizerState._();
 }
 
@@ -21,7 +21,7 @@ class RandomizerStateNotifier extends StateNotifier<RandomizerState> {
 
   final _randomGenerator = Random();
 
-  void generateRandomNumber() {
+  void generateNumber() {
     state = state.copyWith(
         generatedNumber:
             state.min + _randomGenerator.nextInt(1 + state.max - state.min));
@@ -37,14 +37,15 @@ class RandomizerStateNotifier extends StateNotifier<RandomizerState> {
 }
 
 class RandomizerChangeNotifier extends ChangeNotifier {
-  final _randomGenerator = Random();
-
-  int? _generatedNumber;
-  int? get generatedNumber => _generatedNumber;
-
   int min = 0, max = 0;
 
-  void generateRandomNumber() {
+  int? _generatedNumber;
+
+  int? get generatedNumber => _generatedNumber;
+
+  final _randomGenerator = Random();
+
+  void generateNumber() {
     _generatedNumber = min + _randomGenerator.nextInt(1 + max - min);
     notifyListeners();
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:practice/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:practice/main.dart';
 
 class RangeSelectorForm extends StatelessWidget {
   const RangeSelectorForm({
@@ -14,24 +14,21 @@ class RangeSelectorForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RangeSelectorTextFormField(
-              labelText: "Minimum",
-              intValueSetter: (value) =>
-                  context.read(randomizerProvider.notifier).setMin(value),
-            ),
-            const SizedBox(height: 12),
-            RangeSelectorTextFormField(
-              labelText: "Maximum",
-              intValueSetter: (value) =>
-                  context.read(randomizerProvider.notifier).setMax(value),
-            ),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RangeSelectorTextFormField(
+            labelText: "Minimum",
+            intValueSetter: (value) =>
+                context.read(randomizerProvider.notifier).setMin(value),
+          ),
+          const SizedBox(height: 12),
+          RangeSelectorTextFormField(
+            labelText: "Maximum",
+            intValueSetter: (value) =>
+                context.read(randomizerProvider.notifier).setMax(value),
+          ),
+        ],
       ),
     );
   }
@@ -51,15 +48,15 @@ class RangeSelectorTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-          labelText: labelText, border: const OutlineInputBorder()),
-      keyboardType: const TextInputType.numberWithOptions(signed: true),
+        border: const OutlineInputBorder(),
+        labelText: labelText,
+      ),
       onSaved: (newValue) => intValueSetter(int.parse(newValue ?? "")),
       validator: (value) {
         if (value == null || int.tryParse(value) == null) {
           return "Must be an integer";
-        } else {
-          return null;
         }
+        return null;
       },
     );
   }

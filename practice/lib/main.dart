@@ -17,7 +17,7 @@ class AppWidget extends StatelessWidget {
     return ProviderScope(
       child: MaterialApp(
         title: 'Randomizer',
-        home: RangeSelectorPage(),
+        home: RandomSelectorPage(),
       ),
     );
   }
