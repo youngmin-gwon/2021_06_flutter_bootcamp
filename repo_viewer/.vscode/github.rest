@@ -1,6 +1,6 @@
 ###
 GET https://api.github.com/user/starred?page=1
 Content-Type: application/json
-Authorization: bearer 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
+Authorization: bearer ******
 
 ###
