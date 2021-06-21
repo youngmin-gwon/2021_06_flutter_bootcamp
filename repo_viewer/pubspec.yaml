@@ -25,6 +25,7 @@ dependencies:
   webview_flutter: ^2.0.8
   flash: ^2.0.0
   auto_route: ^2.2.0
+  material_design_icons_flutter: ^5.0.5955-rc.1
 
 dev_dependencies:
   flutter_test:
