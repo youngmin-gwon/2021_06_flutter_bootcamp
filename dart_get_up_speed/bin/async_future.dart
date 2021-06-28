@@ -55,7 +55,7 @@ Future<void> streamGeneratorTest() async {
   //  => 어려운 말이지만 이 말을 하는 이유 => collection처럼 map, where 적용이 가능함
   createMessageStream()
       .map((message) => message.toUpperCase())
-      .where((message) => message.length > 7)
+      .where((message) => message.length < 7)
       .listen((event) {
     print(event);
   });
