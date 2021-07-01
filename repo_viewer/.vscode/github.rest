@@ -1,6 +1,41 @@
-###
-GET https://api.github.com/user/starred?page=1
-Content-Type: application/json
-Authorization: bearer ******
+variable 정의
+@baseUrl = https://api.github.com
+@token = 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
+@acceptHeader = application/vnd.github.v3.html+json
 
 ###
+GET {{baseUrl}}/user/starred
+?page=1
+Content-Type: application/json
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
+
+###
+GET {{baseUrl}}/search/repositories
+?q=flutter
+&page=1
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
+
+###
+GET {{baseUrl}}/repos/flutter/flutter/readme
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
+
+###
+PUT {{baseUrl}}/user/starred/dart-lang/dart-sdk
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
+Content-Length: 0
+
+###
+DELETE {{baseUrl}}/user/starred/dart-lang/dart-sdk
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
+
+###
+GET {{baseUrl}}/user/starred/dart-lang/dart-sdk
+Authorization: bearer {{token}}
+Accept: {{acceptHeader}}
+
+ 
