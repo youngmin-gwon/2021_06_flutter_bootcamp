@@ -27,8 +27,8 @@ class GithubAuthenticator {
   // abstract class인 이유는 나중에 바꿔줄 경우를 위해
 
   // github client id 정의
-  static const clientId = 'clientId';
-  static const clientSecret = 'clientSecret';
+  static const clientId = 'a39bf2ea8164eb357e05';
+  static const clientSecret = 'bbaf53a8e526586b36b4932f431732af52ed5c7b';
   // scope : 어디까지 할 수 있는지 권한 부여하는 것
   static const scopes = ["read:user", "repo"];
   // endpoint 정의
