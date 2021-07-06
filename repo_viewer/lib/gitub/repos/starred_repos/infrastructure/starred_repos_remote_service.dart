@@ -1,4 +1,5 @@
 // import 'package:dio/dio.dart';
+// import 'package:repo_viewer/core/infrastructure/remote_response.dart';
 
 // import 'package:repo_viewer/gitub/core/infrastructure/github_repo_dto.dart';
 
@@ -8,9 +9,11 @@
 //     this._dio,
 //   );
 
-//   Future<List<GithubRepoDTO>> getStarredReposPage(
+//   Future<RemoteResponse<List<GithubRepoDTO>>> getStarredReposPage(
 //     int page,
 
-//   ) async {}
+//   ) async {
+
+//   }
   
 // }
