@@ -117,7 +117,7 @@ class GithubAuthenticator {
     try {
       try {
         // authorization data 넣어줘야함
-        _dio.deleteUri(
+        await _dio.deleteUri(
           revocationEndpoint,
           data: {
             "access_token": accessToken,
