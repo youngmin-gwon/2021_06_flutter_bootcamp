@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:repo_viewer/core/infrastructure/network_exceptions.dart';
 
 import 'package:repo_viewer/core/infrastructure/remote_response.dart';
+import 'package:repo_viewer/gitub/core/infrastructure/github_headers.dart';
 import 'package:repo_viewer/gitub/core/infrastructure/github_headers_cache.dart';
 import 'package:repo_viewer/gitub/core/infrastructure/github_repo_dto.dart';
 import 'package:repo_viewer/core/infrastructure/dio_extensions.dart';
@@ -39,11 +40,32 @@ class StarredReposRemoteService {
           },
         ),
       );
-      // 예시
-      return RemoteResponse.noConnection();
+
+      // 데이터가 변하지 않았을 경우
+      if (response.statusCode == 304) {
+        return RemoteResponse.notModified(
+            maxPage: previousHeaders?.link?.maxPage ?? 0);
+      } else if (response.statusCode == 200) {
+        // header 받은 값 headerCache 에 저장하기
+        final headers = GithubHeaders.parse(response);
+        // max number 넘기기
+        await _headersCache.saveHeaders(requestUri, headers);
+
+        // data 변환
+        final convertedData = (response.data as List<dynamic>)
+            .map((e) => GithubRepoDTO.fromJson(e as Map<String, dynamic>))
+            .toList();
+        return RemoteResponse.withNewData(
+          convertedData,
+          maxPage: headers.link?.maxPage ?? 1,
+        );
+      } else {
+        throw RestApiException(errorCode: response.statusCode);
+      }
     } on DioError catch (e) {
       if (e.isNoConnectionError) {
-        return const RemoteResponse.noConnection();
+        return RemoteResponse.noConnection(
+            maxPage: previousHeaders?.link?.maxPage ?? 0);
       } else if (e.response != null) {
         throw RestApiException(errorCode: e.response?.statusCode);
       } else {
