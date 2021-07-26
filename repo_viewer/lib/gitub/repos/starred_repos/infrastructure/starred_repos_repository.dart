@@ -27,13 +27,12 @@ class StarredReposRepository {
             await _localService.getPage(page).then((_) => _.toDomain()),
             isNextPageAvailable: page < maxPage,
           ),
-          // TODO: local service
           notModified: (maxPage) async => Fresh.yes(
             await _localService.getPage(page).then((_) => _.toDomain()),
             isNextPageAvailable: page < maxPage,
           ),
           withNewData: (data, maxPage) async {
-            // TODO: save data in the local service
+            await _localService.upsertPage(data, page);
             return Fresh.yes(
               data.toDomain(),
               isNextPageAvailable: page < maxPage,
