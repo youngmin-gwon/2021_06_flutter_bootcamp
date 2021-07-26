@@ -108,13 +108,13 @@ class GithubAuthenticator {
   }
 
   Future<Either<AuthFailure, Unit>> signOut() async {
-    final accessToken = await _credentialStorage
-        .read()
-        .then((credentials) => credentials?.accessToken);
-    // authorization header 에 base64로 encode해서 client id, client secret 넣어야함
-    final usernameAndPassword =
-        stringToBase64.encode("$clientId:$clientSecret");
     try {
+      final accessToken = await _credentialStorage
+          .read()
+          .then((credentials) => credentials?.accessToken);
+      // authorization header 에 base64로 encode해서 client id, client secret 넣어야함
+      final usernameAndPassword =
+          stringToBase64.encode("$clientId:$clientSecret");
       try {
         // authorization data 넣어줘야함
         await _dio.deleteUri(
@@ -137,6 +137,14 @@ class GithubAuthenticator {
         }
       }
 
+      return clearCredentialsStorage();
+    } on PlatformException {
+      return left(const AuthFailure.storage());
+    }
+  }
+
+  Future<Either<AuthFailure, Unit>> clearCredentialsStorage() async {
+    try {
       await _credentialStorage.clear();
       return right(unit);
     } on PlatformException {
