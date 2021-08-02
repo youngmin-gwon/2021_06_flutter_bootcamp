@@ -1,5 +1,4 @@
-import 'package:animation_course/1_implicit_animation/101_demo_button.dart';
-import 'package:animation_course/1_implicit_animation/104_style.dart';
+import 'package:animation_course/0_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedPhysicalModelExample extends StatefulWidget {

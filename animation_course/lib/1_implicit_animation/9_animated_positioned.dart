@@ -1,8 +1,5 @@
-import 'package:animation_course/1_implicit_animation/104_style.dart';
+import 'package:animation_course/0_widgets/widgets.dart';
 import 'package:flutter/material.dart';
-
-import '101_demo_button.dart';
-import '102_animate_me_please.dart';
 
 class AnimatedPositionedExample extends StatefulWidget {
   const AnimatedPositionedExample({Key? key}) : super(key: key);
