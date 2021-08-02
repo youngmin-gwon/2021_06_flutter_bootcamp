@@ -1,7 +1,6 @@
 import 'dart:math';
 
-import 'package:animation_course/1_implicit_animation/101_demo_button.dart';
-import 'package:animation_course/1_implicit_animation/104_style.dart';
+import 'package:animation_course/0_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:random_color/random_color.dart';

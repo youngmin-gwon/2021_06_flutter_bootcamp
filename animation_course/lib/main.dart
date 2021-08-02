@@ -1,5 +1,6 @@
-import 'package:animation_course/1_implicit_animation/103_implicit_animation_pageview.dart';
 import 'package:flutter/material.dart';
+
+import '0_widgets/widgets.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,13 +28,22 @@ class HomePage extends StatelessWidget {
       body: Center(
           child: Column(
         children: [
-          TextButton(
+          const SizedBox(height: 12),
+          ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const ImplicitAnimationPageView(),
                 ));
               },
-              child: const Text("1. Implicit Animation Widgets"))
+              child: const Text("1. Implicit Animation Widgets")),
+          const SizedBox(height: 12),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ExplicitAnimationPageView(),
+                ));
+              },
+              child: const Text("2. Explicit Animation Widgets"))
         ],
       )),
     );
