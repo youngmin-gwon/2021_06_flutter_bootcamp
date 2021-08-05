@@ -16,12 +16,12 @@ class _FadeTransitionExampleState extends State<FadeTransitionExample>
 
   @override
   void initState() {
+    super.initState();
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 5));
     _controller
       ..repeat(reverse: true)
       ..addStatusListener(_animationStatusListener);
-    super.initState();
   }
 
   void _animationStatusListener(AnimationStatus status) {
@@ -30,7 +30,7 @@ class _FadeTransitionExampleState extends State<FadeTransitionExample>
         _text = "Fade In";
         _key = "fadeIn";
       });
-    } else if (status == AnimationStatus.dismissed) {
+    } else if (status == AnimationStatus.reverse) {
       setState(() {
         _text = "Fade Out";
         _key = "fadeOut";
@@ -53,7 +53,7 @@ class _FadeTransitionExampleState extends State<FadeTransitionExample>
         transitionBuilder: (Widget child, Animation<double> animation) {
           return SlideTransition(
             position: Tween<Offset>(
-                    begin: const Offset(0, 1), end: const Offset(0, 0))
+                    begin: const Offset(1, 0), end: const Offset(0, 0))
                 .animate(animation),
             child: child,
           );
