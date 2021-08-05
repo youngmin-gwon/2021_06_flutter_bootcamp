@@ -6,6 +6,7 @@ import 'package:animation_course/2_explicit_animation/4_animation.dart';
 import 'package:animation_course/2_explicit_animation/5_animated_builder.dart';
 import 'package:animation_course/2_explicit_animation/6_animated_widget.dart';
 import 'package:animation_course/2_explicit_animation/7_built_in_explicit_animations.dart';
+import 'package:animation_course/2_explicit_animation/8_flutter_hooks.dart';
 import 'package:flutter/material.dart';
 
 class ExplicitAnimationPageView extends StatelessWidget {
@@ -42,6 +43,10 @@ class ExplicitAnimationPageView extends StatelessWidget {
         DemoPage(
           title: "Explicit Animation Widgets",
           child: ExplicitAnimationExample(),
+        ),
+        DemoPage(
+          title: "Flutter Hooks Animation",
+          child: FlutterHooksExample(),
         ),
       ],
     );

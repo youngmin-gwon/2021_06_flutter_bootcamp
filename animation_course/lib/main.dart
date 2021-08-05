@@ -44,7 +44,10 @@ class HomePage extends StatelessWidget {
                   builder: (context) => const ExplicitAnimationPageView(),
                 ));
               },
-              child: const Text("2. Explicit Animation Widgets"))
+              child: const Text("2. Explicit Animation Widgets")),
+          const SizedBox(height: 12),
+          ElevatedButton(
+              onPressed: () {}, child: const Text("3. Tween Curve Widgets")),
         ],
       )),
     );
