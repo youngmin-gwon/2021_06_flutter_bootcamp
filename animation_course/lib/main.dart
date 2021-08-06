@@ -1,3 +1,4 @@
+import 'package:animation_course/0_widgets/5_staggered_animation_pageview.dart';
 import 'package:flutter/material.dart';
 
 import '0_widgets/widgets.dart';
@@ -48,6 +49,14 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 12),
           ElevatedButton(
               onPressed: () {}, child: const Text("3. Tween Curve Widgets")),
+          const SizedBox(height: 12),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const StaggeredAnimationPageView(),
+                ));
+              },
+              child: const Text("4. Staggered Animation")),
         ],
       )),
     );
