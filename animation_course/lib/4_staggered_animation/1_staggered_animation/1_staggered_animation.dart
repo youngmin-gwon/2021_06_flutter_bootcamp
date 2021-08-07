@@ -3,6 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+// timeDilation is top property
+import 'package:flutter/scheduler.dart' show timeDilation;
+
 class StaggeredAnimationExample extends HookWidget {
   const StaggeredAnimationExample({Key? key}) : super(key: key);
 
@@ -10,6 +13,9 @@ class StaggeredAnimationExample extends HookWidget {
   Widget build(BuildContext context) {
     final _controller =
         useAnimationController(duration: const Duration(milliseconds: 2000));
+
+    // slows down animations by this factor to help in development.
+    // timeDilation = 2.0;
 
     Future<void> _playAnimation() async {
       try {
