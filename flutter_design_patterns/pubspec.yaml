@@ -1,0 +1,61 @@
+name: flutter_design_patterns
+description: Flutter Design Patterns Library
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  faker: ^2.0.0
+  flutter:
+    sdk: flutter
+  flutter_markdown: ^0.6.0
+  flutter_riverpod: ^0.14.0+3
+  font_awesome_flutter: ^9.0.0
+  xml: ^5.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lint: ^1.5.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/data/
+    - assets/markdown/
+    - assets/images/abstract_factory/
+    - assets/images/adapter/
+    - assets/images/bridge/
+    - assets/images/builder/
+    - assets/images/chain_of_responsibility/
+    - assets/images/command/
+    - assets/images/composite/
+    - assets/images/decorator/
+    - assets/images/facade/
+    - assets/images/factory_method/
+    - assets/images/flyweight/
+    - assets/images/interpreter/
+    - assets/images/iterator/
+    - assets/images/mediator/
+    - assets/images/memento/
+    - assets/images/observer/
+    - assets/images/prototype/
+    - assets/images/proxy/
+    - assets/images/singleton/
+    - assets/images/state/
+    - assets/images/strategy/
+    - assets/images/template_method/
+    - assets/images/visitor/
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+    - family: RobotoMedium
+      fonts:
+        - asset: assets/fonts/Roboto-Medium.ttf
