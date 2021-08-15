@@ -26,6 +26,16 @@ class AppRouter {
           settings,
           const AdapterExample(),
         );
+      case _DesignPatternRoutes.templateMethodRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          const TemplateMethodExample(),
+        );
+      case _DesignPatternRoutes.compositeRoute:
+        return _buildDesignPatternDetailsPageRoute(
+          settings,
+          const CompositeExample(),
+        );
 
       default:
         return MaterialPageRoute(
