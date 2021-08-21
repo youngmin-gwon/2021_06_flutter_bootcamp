@@ -11,7 +11,7 @@ class SignInPage extends ConsumerWidget {
   const SignInPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetReference ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -39,8 +39,7 @@ class SignInPage extends ConsumerWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // ref.read()
-                      context.read(authNotifierProvider.notifier).signIn(
+                      ref.read(authNotifierProvider.notifier).signIn(
                         (authorizationUrl) {
                           final completer = Completer<Uri>();
                           AutoRouter.of(context).push(

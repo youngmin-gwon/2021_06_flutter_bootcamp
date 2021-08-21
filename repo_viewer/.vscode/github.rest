@@ -15,12 +15,12 @@ If-None-Match: W/"~~~~~"
 GET {{baseUrl}}/search/repositories
 ?q=flutter
 &page=1
-Authorization: bearer {{token}}
-Accept: {{acceptHeader}}
+# Authorization: bearer {{token}}
+# Accept: {{acceptHeader}}
 
 ###
 GET {{baseUrl}}/repos/flutter/flutter/readme
-Authorization: bearer {{token}}
+## Authorization: bearer {{token}}
 Accept: {{acceptHeader}}
 
 ###

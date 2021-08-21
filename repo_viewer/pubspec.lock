@@ -236,16 +236,14 @@ packages:
       name: flutter_hooks
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.0"
+    version: "0.18.0"
   flutter_riverpod:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "packages/flutter_riverpod"
-      ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      resolved-ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      url: "https://github.com/rrousselGit/river_pod.git"
-    source: git
-    version: "0.14.0+2"
+      name: flutter_riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0-dev.6"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -296,12 +294,10 @@ packages:
   hooks_riverpod:
     dependency: "direct main"
     description:
-      path: "packages/hooks_riverpod"
-      ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      resolved-ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      url: "https://github.com/rrousselGit/river_pod.git"
-    source: git
-    version: "0.14.0+2"
+      name: hooks_riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0-dev.6"
   http:
     dependency: transitive
     description:
@@ -499,14 +495,12 @@ packages:
     source: hosted
     version: "1.0.0"
   riverpod:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "packages/riverpod"
-      ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      resolved-ref: "147be70df096015af0633456a951d8f2f9c66dc9"
-      url: "https://github.com/rrousselGit/river_pod.git"
-    source: git
-    version: "0.14.0+1"
+      name: riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0-dev.6"
   sembast:
     dependency: "direct main"
     description:
