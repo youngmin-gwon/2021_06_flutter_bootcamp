@@ -6,13 +6,13 @@ class StarredReposPage extends ConsumerWidget {
   const StarredReposPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetReference ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             // ref.read(authNotifierProvider.notifier).signOut();
-            context.read(authNotifierProvider.notifier).signOut();
+            ref.read(authNotifierProvider.notifier).signOut();
           },
           child: Text("Sign Out"),
         ),

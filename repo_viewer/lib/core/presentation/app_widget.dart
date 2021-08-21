@@ -17,36 +17,32 @@ class AppWidget extends ConsumerWidget {
   final appRouter = AppRouter();
 
   @override
-  Widget build(BuildContext context, WidgetReference ref) {
-    return ProviderListener(
-      provider: initializationProvider,
-      onChange: (context, value) {},
-      child: ProviderListener<AuthState>(
-        provider: authNotifierProvider,
-        onChange: (context, state) {
-          state.maybeMap(
-            authenticated: (_) {
-              appRouter.pushAndPopUntil(
-                const StarredReposRoute(),
-                // predicate
-                predicate: (route) => false,
-              );
-            },
-            unauthenticated: (_) {
-              appRouter.pushAndPopUntil(
-                const SignInRoute(),
-                predicate: (route) => false,
-              );
-            },
-            orElse: () {},
-          );
-        },
-        child: MaterialApp.router(
-          title: 'Repo Viewer',
-          routerDelegate: appRouter.delegate(),
-          routeInformationParser: appRouter.defaultRouteParser(),
-        ),
-      ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(initializationProvider, (value) {
+      ref.listen<AuthState>(authNotifierProvider, (state) {
+        state.maybeMap(
+          authenticated: (_) {
+            appRouter.pushAndPopUntil(
+              const StarredReposRoute(),
+              // predicate
+              predicate: (route) => false,
+            );
+          },
+          unauthenticated: (_) {
+            appRouter.pushAndPopUntil(
+              const SignInRoute(),
+              predicate: (route) => false,
+            );
+          },
+          orElse: () {},
+        );
+      });
+    });
+
+    return MaterialApp.router(
+      title: 'Repo Viewer',
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 }
