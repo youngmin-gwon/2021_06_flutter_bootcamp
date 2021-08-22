@@ -11,7 +11,6 @@ class StarredReposPage extends ConsumerWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            // ref.read(authNotifierProvider.notifier).signOut();
             ref.read(authNotifierProvider.notifier).signOut();
           },
           child: Text("Sign Out"),
