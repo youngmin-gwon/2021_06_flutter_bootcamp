@@ -6,7 +6,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/*.freezed.dart": true,
-    "**/*.g.dart": true,
+    "**/*.g.dart": false,
     "**/.gitkeep": false
   },
   "explorerExclude.backup": null

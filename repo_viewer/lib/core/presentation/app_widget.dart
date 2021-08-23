@@ -14,6 +14,8 @@ final initializationProvider = FutureProvider<Unit>((ref) async {
       headers: {
         "Accept": "application/vnd.github.v3.html+json",
       },
+      validateStatus: (status) =>
+          status != null && status >= 200 && status < 400,
     )
     ..interceptors.add(
       ref.read(oAuth2InterceptorProvider),
@@ -28,31 +30,35 @@ class AppWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(initializationProvider, (value) {
-      ref.listen<AuthState>(authNotifierProvider, (state) {
-        state.maybeMap(
-          authenticated: (_) {
-            appRouter.pushAndPopUntil(
-              const StarredReposRoute(),
-              // predicate
-              predicate: (route) => false,
-            );
-          },
-          unauthenticated: (_) {
-            appRouter.pushAndPopUntil(
-              const SignInRoute(),
-              predicate: (route) => false,
-            );
-          },
-          orElse: () {},
-        );
-      });
-    });
-
-    return MaterialApp.router(
-      title: 'Repo Viewer',
-      routerDelegate: appRouter.delegate(),
-      routeInformationParser: appRouter.defaultRouteParser(),
+    return ProviderListener(
+      provider: initializationProvider,
+      onChange: (context, value) {},
+      child: ProviderListener<AuthState>(
+        provider: authNotifierProvider,
+        onChange: (context, state) {
+          state.maybeMap(
+            authenticated: (_) {
+              appRouter.pushAndPopUntil(
+                const StarredReposRoute(),
+                // predicate
+                predicate: (route) => false,
+              );
+            },
+            unauthenticated: (_) {
+              appRouter.pushAndPopUntil(
+                const SignInRoute(),
+                predicate: (route) => false,
+              );
+            },
+            orElse: () {},
+          );
+        },
+        child: MaterialApp.router(
+          title: 'Repo Viewer',
+          routerDelegate: appRouter.delegate(),
+          routeInformationParser: appRouter.defaultRouteParser(),
+        ),
+      ),
     );
   }
 }
