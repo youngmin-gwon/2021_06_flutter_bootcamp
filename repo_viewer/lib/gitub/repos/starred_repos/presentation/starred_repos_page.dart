@@ -30,7 +30,7 @@ class _StarredReposPageState extends ConsumerState<StarredReposPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Starred repos"),
+        title: const Text("Starred repos"),
         actions: [
           IconButton(
               onPressed: () {
@@ -39,7 +39,7 @@ class _StarredReposPageState extends ConsumerState<StarredReposPage> {
               icon: const Icon(MdiIcons.logoutVariant))
         ],
       ),
-      body: PaginatedReposListView(),
+      body: const PaginatedReposListView(),
     );
   }
 }
