@@ -1,4 +1,4 @@
-import 'package:animation_course/1_implicit_animation/100_demo_page.dart';
+import 'package:animation_course/0_widgets/1_demo_page.dart';
 import 'package:animation_course/1_implicit_animation/10_tween_animation_builder.dart';
 import 'package:animation_course/1_implicit_animation/1_implicit_animation_game.dart';
 import 'package:animation_course/1_implicit_animation/2_animated_container.dart';
