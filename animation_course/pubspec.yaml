@@ -29,6 +29,7 @@ dependencies:
   flutter_riverpod: ^1.0.0-dev.6
   flutter_sequence_animation: ^4.0.0-nullsafety
   flutter_staggered_animations: ^1.0.0
+  provider: ^6.0.0
   random_color: ^1.0.6-nullsafety
   recase: ^4.0.0
   simple_animations: ^3.1.1

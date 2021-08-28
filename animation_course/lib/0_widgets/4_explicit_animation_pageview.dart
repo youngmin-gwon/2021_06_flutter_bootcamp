@@ -1,4 +1,4 @@
-import 'package:animation_course/1_implicit_animation/100_demo_page.dart';
+import 'package:animation_course/0_widgets/1_demo_page.dart';
 import 'package:animation_course/2_explicit_animation/1_animation_controller.dart';
 import 'package:animation_course/2_explicit_animation/2_animation_status_listener.dart';
 import 'package:animation_course/2_explicit_animation/3_tween.dart';
