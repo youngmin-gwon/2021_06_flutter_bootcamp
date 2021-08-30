@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:repo_viewer/auth/shared/providers.dart';
+import 'package:repo_viewer/core/presentation/routes/app_router.gr.dart';
 import 'package:repo_viewer/gitub/core/shared/providers.dart';
-import 'package:repo_viewer/gitub/repos/starred_repos/presentation/paginated_repos_list_view.dart';
+import 'package:repo_viewer/gitub/repos/core/presentation/paginated_repos_list_view.dart';
 
 class StarredReposPage extends ConsumerStatefulWidget {
   const StarredReposPage({Key? key}) : super(key: key);
@@ -36,10 +38,25 @@ class _StarredReposPageState extends ConsumerState<StarredReposPage> {
               onPressed: () {
                 ref.read(authNotifierProvider.notifier).signOut();
               },
-              icon: const Icon(MdiIcons.logoutVariant))
+              icon: const Icon(MdiIcons.logoutVariant)),
+          IconButton(
+              onPressed: () {
+                AutoRouter.of(context)
+                    .push(SearchedReposRoute(searchTerm: "angular"));
+              },
+              icon: const Icon(MdiIcons.magnify))
         ],
       ),
-      body: const PaginatedReposListView(),
+      body: PaginatedReposListView(
+        paginatedReposNotifierProvider: starredReposNotifierProvider,
+        getNextPage: (ref) {
+          ref
+              .read(starredReposNotifierProvider.notifier)
+              .getNextStarredReposPage();
+        },
+        noResultsMessage:
+            "That's about everything we could find in your starred repos right now.",
+      ),
     );
   }
 }

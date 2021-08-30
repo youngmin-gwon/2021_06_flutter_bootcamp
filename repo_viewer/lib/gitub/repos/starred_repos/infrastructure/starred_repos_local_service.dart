@@ -41,4 +41,9 @@ class StarredReposLocalService {
 
     return records.map((e) => GithubRepoDTO.fromJson(e.value)).toList();
   }
+
+  Future<int> getLocalPageCount() async {
+    final repoCount = await _store.count(_sembastDatabase.instace);
+    return (repoCount / PaginationConfig.itemsPerPage).ceil();
+  }
 }
