@@ -1,11 +1,13 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:riverpod_practice/models/todo.dart';
 import 'package:riverpod_practice/repository/todo_repository.dart';
 
-final _sampleTodos = [
-  Todo("Buy cat food"),
-  Todo("Learn Riverpod"),
+final _sampleJsonTodos = [
+  '''{"description": "Buy cat food", "id": "ef902705-b65e-49bf-b723-cdcb4bfa7327", "completed": false}''',
+  '''{"description": "Learn Riverpod", "id": "ef902705-b65e-49bf-b723-cdcb4bfa7329", "completed": true}''',
+  '''{"description": "Play games", "id": "0704c57a-6901-40db-88dc-b22269af658b", "completed": false}''',
 ];
 
 class TodoException implements Exception {
@@ -25,7 +27,11 @@ const double errorLikelihood = 0.1;
 
 class FakeTodoRepository implements TodoRepository {
   FakeTodoRepository() : random = Random() {
-    mockTodoStorage = [..._sampleTodos];
+    mockTodoStorage = [
+      ..._sampleJsonTodos.map((todoJson) {
+        return Todo.fromJson(json.decode(todoJson) as Map<String, dynamic>);
+      })
+    ];
   }
 
   final Random random;
@@ -37,7 +43,7 @@ class FakeTodoRepository implements TodoRepository {
     if (random.nextDouble() < errorLikelihood) {
       throw const TodoException("Todos could not be added");
     } else {
-      mockTodoStorage = [...mockTodoStorage, Todo(description)];
+      mockTodoStorage = [...mockTodoStorage, Todo.create(description)];
     }
   }
 
@@ -50,10 +56,8 @@ class FakeTodoRepository implements TodoRepository {
       mockTodoStorage = [
         for (final todo in mockTodoStorage)
           if (todo.id == id)
-            Todo(
-              description,
-              id: todo.id,
-              completed: todo.completed,
+            todo.copyWith(
+              description: description,
             )
           else
             todo,
@@ -90,10 +94,8 @@ class FakeTodoRepository implements TodoRepository {
     } else {
       mockTodoStorage = mockTodoStorage.map((todo) {
         if (todo.id == id) {
-          return Todo(
-            todo.description,
-            id: todo.id,
-            completed: !todo.completed,
+          return todo.copyWith(
+            completed: todo.completed,
           );
         }
         return todo;
@@ -102,7 +104,7 @@ class FakeTodoRepository implements TodoRepository {
   }
 
   Future<void> _waitRandomTime() async {
-    await Future.delayed(
+    await Future<dynamic>.delayed(
       Duration(
         seconds: random.nextInt(3),
       ),

@@ -68,7 +68,7 @@ class TodosNotifier extends StateNotifier<AsyncValue<List<Todo>>> {
 
   Future<void> add(String description) async {
     _cachedState();
-    state = state.whenData((todos) => [...todos, Todo(description)]);
+    state = state.whenData((todos) => [...todos, Todo.create(description)]);
 
     try {
       await read(todoRepositoryProvider).addTodo(description);
@@ -87,9 +87,7 @@ class TodosNotifier extends StateNotifier<AsyncValue<List<Todo>>> {
     state = state.whenData(
       (value) => value.map((todo) {
         if (todo.id == id) {
-          return Todo(
-            todo.description,
-            id: todo.id,
+          return todo.copyWith(
             completed: !todo.completed,
           );
         } else {
@@ -110,10 +108,8 @@ class TodosNotifier extends StateNotifier<AsyncValue<List<Todo>>> {
       return [
         for (final todo in todos)
           if (todo.id == id)
-            Todo(
-              description,
-              id: todo.id,
-              completed: todo.completed,
+            todo.copyWith(
+              description: description,
             )
           else
             todo

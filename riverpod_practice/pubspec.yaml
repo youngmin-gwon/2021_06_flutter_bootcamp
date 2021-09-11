@@ -25,11 +25,17 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^1.0.0-dev.6
   uuid: ^3.0.4
+  freezed_annotation:
+  json_annotation:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   lint: ^1.6.0
+  build_runner:
+  freezed:
+  json_serializable:
+  very_good_analysis: ^2.1.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

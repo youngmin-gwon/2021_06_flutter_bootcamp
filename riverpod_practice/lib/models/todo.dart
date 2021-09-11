@@ -1,17 +1,32 @@
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
+
+part 'todo.freezed.dart';
+part 'todo.g.dart';
 
 var _uuid = const Uuid();
 
-@immutable
-class Todo {
-  final String id;
-  final String description;
-  final bool completed;
+///
+@freezed
+class Todo with _$Todo {
+  ///
+  const factory Todo({
+    ///
+    required String id,
 
-  Todo(
-    this.description, {
-    String? id,
-    this.completed = false,
-  }) : id = id ?? _uuid.v4();
+    ///
+    required String description,
+
+    ///
+    @Default(false) bool completed,
+  }) = _Todo;
+
+  const Todo._();
+
+  ///
+  factory Todo.create(String description) =>
+      Todo(id: _uuid.v4(), description: description);
+
+  ///
+  factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
 }
