@@ -1,1 +1,15 @@
-include: package:lint/analysis_options.yaml
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "**/*.iconfig.dart"
+    - "**/*.freezed.dart"
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+
+linter:
+  rules:
+    public_memeber_api_docs: false
