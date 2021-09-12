@@ -1,16 +1,16 @@
-class PhaseState {
-  final String _phase;
-  bool _like;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  PhaseState({
-    required String phase,
-  })  : _phase = phase,
-        _like = false;
+part 'phrase_state.freezed.dart';
 
-  String get phrase => _phase;
-  bool get like => _like;
+@freezed
+class PhraseModel with _$PhraseModel {
+  const PhraseModel._();
+  const factory PhraseModel(
+      {required String phrase, @Default(false) bool like}) = _PhraseModel;
 
   void likeOrDislike() {
-    _like = !_like;
+    copyWith(
+      like: !like,
+    );
   }
 }
