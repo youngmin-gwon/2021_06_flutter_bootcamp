@@ -27,6 +27,7 @@ dependencies:
   uuid: ^3.0.4
   freezed_annotation:
   json_annotation:
+  chewie: ^1.2.2
 
 dev_dependencies:
   flutter_test:

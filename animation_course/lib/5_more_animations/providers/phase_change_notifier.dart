@@ -3,49 +3,51 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 class PhaseStateNotifier extends ChangeNotifier {
-  final List<PhaseState> _phases = [];
-  final List<PhaseState> _likedPhases = [];
+  final List<PhraseModel> _phrases = [];
+  final List<PhraseModel> _likedPhases = [];
 
-  List<PhaseState> get phases => _phases;
-  List<PhaseState> get likedPhases => _likedPhases;
+  List<PhraseModel> get phases => _phrases;
+  List<PhraseModel> get likedPhases => _likedPhases;
 
   void _initiate() {
     final random = generateWordPairs();
     for (final item in random) {
-      _phases.add(PhaseState(phase: item.first));
+      _phrases.add(
+        PhraseModel(phrase: item.first),
+      );
     }
   }
 
   void addRandomItemToList() {
-    _phases.add(PhaseState(phase: generateWordPairs().first.asCamelCase));
+    _phrases.add(PhraseModel(phrase: generateWordPairs().first.asCamelCase));
     notifyListeners();
   }
 
-  void addItemToList(PhaseState phrase, int index) {
-    _phases.insert(index, phrase);
+  void addItemToList(PhraseModel phrase, int index) {
+    _phrases.insert(index, phrase);
     notifyListeners();
   }
 
   void removeItemFromList(int index) {
-    _phases.removeAt(index);
+    _phrases.removeAt(index);
     notifyListeners();
   }
 
   int get length {
-    if (_phases != null) {
-      return _phases.length;
+    if (_phrases.isNotEmpty) {
+      return _phrases.length;
     } else {
       return 0;
     }
   }
 
   void likeItem(int index) {
-    _phases[index].likeOrDislike();
-    if (_phases[index].like == true) {
-      _likedPhases.add(_phases[index]);
+    _phrases[index].likeOrDislike();
+    if (_phrases[index].like == true) {
+      _likedPhases.add(_phrases[index]);
     } else {
       _likedPhases
-          .removeWhere((phrase) => phrase.phrase == _phases[index].phrase);
+          .removeWhere((phrase) => phrase.phrase == _phrases[index].phrase);
     }
     notifyListeners();
   }
