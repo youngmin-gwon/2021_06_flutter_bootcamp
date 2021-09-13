@@ -1,8 +1,13 @@
 import 'package:animation_course/5_more_animations/models/phrase_state.dart';
-import 'package:english_words/english_words.dart';
+import 'package:animation_course/5_more_animations/utils/word_generator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PhaseStateNotifier extends ChangeNotifier {
+final phrasesProvider = ChangeNotifierProvider<PhraseChangeNotifier>(
+  (ref) => PhraseChangeNotifier(),
+);
+
+class PhraseChangeNotifier extends ChangeNotifier {
   final List<PhraseModel> _phrases = [];
   final List<PhraseModel> _likedPhases = [];
 
@@ -10,16 +15,16 @@ class PhaseStateNotifier extends ChangeNotifier {
   List<PhraseModel> get likedPhases => _likedPhases;
 
   void _initiate() {
-    final random = generateWordPairs();
+    final random = generateRandomPhrases(5);
     for (final item in random) {
       _phrases.add(
-        PhraseModel(phrase: item.first),
+        PhraseModel(phrase: item),
       );
     }
   }
 
   void addRandomItemToList() {
-    _phrases.add(PhraseModel(phrase: generateWordPairs().first.asCamelCase));
+    _phrases.add(PhraseModel(phrase: generateRandomPhrase()));
     notifyListeners();
   }
 
