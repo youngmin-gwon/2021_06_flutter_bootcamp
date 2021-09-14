@@ -8,6 +8,10 @@ final phrasesProvider = ChangeNotifierProvider<PhraseChangeNotifier>(
 );
 
 class PhraseChangeNotifier extends ChangeNotifier {
+  PhraseChangeNotifier() {
+    _initiate();
+  }
+
   final List<PhraseModel> _phrases = [];
   final List<PhraseModel> _likedPhases = [];
 
